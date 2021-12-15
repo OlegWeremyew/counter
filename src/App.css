@@ -1,0 +1,76 @@
+.App {
+    background-color: #b08444;
+    border: solid 5px #462905;
+    text-align: center;
+    width: 320px;
+    border-radius: 10px;
+    margin: 0 auto;
+    box-shadow: 10px 5px 5px #181616;
+}
+
+.conteiner {
+    display: block;
+    margin: 10px;
+    padding: 10px;
+}
+
+.table {
+    border: solid 2px #462905;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 30px;
+    background-color: burlywood;
+    height: 30px;
+    font-family: "Calisto MT";
+    font-style: italic;
+}
+
+.tableBlock {
+    color: #e30101;
+    background-color: #eec4c9;
+    border: solid #e30101 2px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.current {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 8px;
+    font-weight: bolder;
+    font-size: 20px;
+    transform: skew(-5deg);
+}
+
+.buttonCurrent {
+    background-color: #6dc775;
+    color: #043604;
+    box-shadow: 3px 3px 3px #181616;
+}
+
+.buttonReset {
+    background-color: #d35832;
+    color: #9a0323;
+    opacity: 0.2;
+    border: solid #e30101 3px;
+}
+
+.buttonResetActive{
+    background-color: #80a8cb;
+    color: #043604;
+    box-shadow: 3px 3px 3px #181616;
+}
+
+.buttonCurrentMax {
+    text-decoration: line-through;
+    color: #e30101;
+    background-color: #a8dcae;
+    opacity: 0.2;
+    border: solid #e30101 3px;
+}
