@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 
 import Counter from "./components/Counter";
@@ -10,6 +10,18 @@ function App() {
     const MaxValue: number = 5
     const [current, setCurrent] = useState<number>(startValue)
 
+    useEffect(() => {
+        let currentAsString = localStorage.getItem("currentValue")
+        if (currentAsString) {
+            let newCurrent = JSON.parse(currentAsString)
+            setCurrent(newCurrent)
+        }
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem("currentValue", JSON.stringify(current))
+    }, [current])
+
     const changeCurrent = () => {
         if (current < MaxValue) {
             return setCurrent(current + 1);
@@ -20,17 +32,6 @@ function App() {
         setCurrent(startValue)
     }
 
-    const setToLocalStorageHandler = () => {
-        localStorage.setItem("currentValue", JSON.stringify(current))
-    }
-
-    const getFromLocalStorageHandler = () => {
-        let currentAsString = localStorage.getItem("currentValue")
-        if (currentAsString) {
-            let newCurrent = JSON.parse(currentAsString)
-            setCurrent(newCurrent)
-        }
-    }
 
     return (
         <div className="App">
@@ -44,8 +45,6 @@ function App() {
                     ButtonReset={ButtonReset}
                     MaxValue={MaxValue}
                     startValue={startValue}
-                    setToLocalStorageHandler={setToLocalStorageHandler}
-                    getFromLocalStorageHandler={getFromLocalStorageHandler}
                 />
             </div>
         </div>

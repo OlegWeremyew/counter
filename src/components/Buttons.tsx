@@ -7,8 +7,10 @@ type ButtonType = {
     current: number
     MaxValue: number
     startValue: number
-    setToLocalStorageHandler: () => void
+  /*  setToLocalStorageHandler: () => void
     getFromLocalStorageHandler: () => void
+    clearLocalStorage: () => void
+    removeItemFromLocalStorageHandler: () => void*/
 }
 
 const Buttons = ({ButtonReset, changeCurrent, MaxValue, startValue, current, ...props}: ButtonType) => {
