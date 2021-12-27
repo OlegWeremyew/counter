@@ -20,14 +20,22 @@ export const SetInput = (props: PropsType) => {
             <div>
                 <div>
                     <span>MaxValue</span>
-                    <input type="number" onChange={props.setCurrentMaxValueHandler} autoFocus/>
+                    <input type="number"
+                           onChange={props.setCurrentMaxValueHandler}
+                           /*value={props.MaxValue}*/
+                           autoFocus/>
                 </div>
                 <div>
                     <span>startValue</span>
-                    <input type="number" onChange={props.setCurrentMinValueHandler} autoFocus/>
+                    <input type="number"
+                           onChange={props.setCurrentMinValueHandler}
+                           /*value={props.startValue}*/
+                           autoFocus/>
                 </div>
             </div>
-            <Button ButtonCallBack={props.setNewCurrentValueHandler} className={""} name={"set"}/>
+            <Button ButtonCallBack={props.setNewCurrentValueHandler}
+                    className={""}
+                    name={"Обновить"}/>
         </div>
     );
 };

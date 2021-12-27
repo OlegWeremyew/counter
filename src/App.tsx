@@ -7,9 +7,9 @@ import Button from "./components/Button";
 import {SetInput} from "./components/SetInput";
 
 function App() {
-    const [startValue, setStartValue] = useState<number>(0)
-    const [MaxValue, setMaxValue] = useState<number>(5)
-    const [current, setCurrent] = useState<number>(startValue)
+    const [startValue, setStartValue] = useState(0)
+    const [MaxValue, setMaxValue] = useState(5)
+    const [current, setCurrent] = useState(startValue)
 
     useEffect(() => {
         let currentAsString = localStorage.getItem("currentValue")
@@ -32,14 +32,21 @@ function App() {
     const ButtonReset = () => {
         setCurrent(startValue)
     }
+
+
+    //надо исправлять
     let newMaxCurrentValue: number
     const setCurrentMaxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        newMaxCurrentValue = +e.currentTarget.value
+        if (+e.currentTarget.value >= 0) {
+            return newMaxCurrentValue = +e.currentTarget.value
+        }
     }
 
     let newMinCurrentValue: number
     const setCurrentMinValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        return newMinCurrentValue = +e.currentTarget.value
+        if (+e.currentTarget.value >= 0) {
+            return newMinCurrentValue = +e.currentTarget.value
+        }
     }
 
     const setNewCurrentValueHandler = () => {
