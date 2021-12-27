@@ -1,3 +1,4 @@
+
 .App {
     background-color: #b08444;
     border: solid 5px #462905;
@@ -6,6 +7,7 @@
     border-radius: 10px;
     margin: 0 auto;
     box-shadow: 10px 5px 5px #181616;
+    margin-bottom: 30px;
 }
 
 .conteiner {

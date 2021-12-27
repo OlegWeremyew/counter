@@ -3,6 +3,8 @@ import './App.css';
 
 import Counter from "./components/Counter";
 import Buttons from "./components/Buttons";
+import Button from "./components/Button";
+import {SetInput} from "./components/SetInput";
 
 function App() {
 
@@ -34,19 +36,33 @@ function App() {
 
 
     return (
-        <div className="App">
-            <div className="conteiner">
-                <Counter
-                    current={current}
-                />
-                <Buttons
-                    current={current}
-                    changeCurrent={changeCurrent}
-                    ButtonReset={ButtonReset}
-                    MaxValue={MaxValue}
-                    startValue={startValue}
-                />
+        <div>
+            <div className="App">
+                <div className="conteiner">
+                    <Counter
+                        current={current}
+                    />
+                    <Buttons
+                        current={current}
+                        changeCurrent={changeCurrent}
+                        ButtonReset={ButtonReset}
+                        MaxValue={MaxValue}
+                        startValue={startValue}
+                    />
+                </div>
             </div>
+
+            <div className="App">
+                <div className="conteiner">
+                    <SetInput
+                        ButtonCallBack={() => {
+                        }}
+                        MaxValue={MaxValue}
+                        startValue={startValue}
+                    />
+                </div>
+            </div>
+
         </div>
     );
 }
