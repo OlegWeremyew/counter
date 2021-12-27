@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import './App.css';
 
 import Counter from "./components/Counter";
@@ -7,9 +7,8 @@ import Button from "./components/Button";
 import {SetInput} from "./components/SetInput";
 
 function App() {
-
-    const startValue: number = 0
-    const MaxValue: number = 5
+    const [startValue, setStartValue] = useState<number>(0)
+    const [MaxValue, setMaxValue] = useState<number>(5)
     const [current, setCurrent] = useState<number>(startValue)
 
     useEffect(() => {
@@ -33,7 +32,20 @@ function App() {
     const ButtonReset = () => {
         setCurrent(startValue)
     }
+    let newMaxCurrentValue: number
+    const setCurrentMaxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        newMaxCurrentValue = +e.currentTarget.value
+    }
 
+    let newMinCurrentValue: number
+    const setCurrentMinValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        return newMinCurrentValue = +e.currentTarget.value
+    }
+
+    const setNewCurrentValueHandler = () => {
+        setMaxValue(newMaxCurrentValue)
+        setStartValue(newMinCurrentValue)
+    }
 
     return (
         <div>
@@ -59,6 +71,9 @@ function App() {
                         }}
                         MaxValue={MaxValue}
                         startValue={startValue}
+                        setCurrentMaxValueHandler={setCurrentMaxValueHandler}
+                        setCurrentMinValueHandler={setCurrentMinValueHandler}
+                        setNewCurrentValueHandler={setNewCurrentValueHandler}
                     />
                 </div>
             </div>
