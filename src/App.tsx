@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import './App.css';
 
-import Counter from "./Counter";
-import Buttons from "./Buttons";
+import Counter from "./components/Counter";
+import Buttons from "./components/Buttons";
 
 function App() {
 
@@ -15,8 +15,21 @@ function App() {
             return setCurrent(current + 1);
         }
     }
+
     const ButtonReset = () => {
         setCurrent(startValue)
+    }
+
+    const setToLocalStorageHandler = () => {
+        localStorage.setItem("currentValue", JSON.stringify(current))
+    }
+
+    const getFromLocalStorageHandler = () => {
+        let currentAsString = localStorage.getItem("currentValue")
+        if (currentAsString) {
+            let newCurrent = JSON.parse(currentAsString)
+            setCurrent(newCurrent)
+        }
     }
 
     return (
@@ -31,6 +44,8 @@ function App() {
                     ButtonReset={ButtonReset}
                     MaxValue={MaxValue}
                     startValue={startValue}
+                    setToLocalStorageHandler={setToLocalStorageHandler}
+                    getFromLocalStorageHandler={getFromLocalStorageHandler}
                 />
             </div>
         </div>
