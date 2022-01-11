@@ -3,25 +3,33 @@ import './App.css';
 
 import Counter from "./components/Counter";
 import Buttons from "./components/Buttons";
-import Button from "./components/Button";
 import {SetInput} from "./components/SetInput";
 
 function App() {
-    const [startValue, setStartValue] = useState(0)
-    const [MaxValue, setMaxValue] = useState(5)
-    const [current, setCurrent] = useState(startValue)
+
+    const startingMessage = 'enter values and press "update"';
+
+    const [startValue, setStartValue] = useState<number>(0)
+    const [MaxValue, setMaxValue] = useState<number>(5)
+    const [current, setCurrent] = useState<number>(startValue)
+    const [error, setError] = useState('')
 
     useEffect(() => {
-        let currentAsString = localStorage.getItem("currentValue")
-        if (currentAsString) {
-            let newCurrent = JSON.parse(currentAsString)
-            setCurrent(newCurrent)
+        let startValueAsString = localStorage.getItem("startValue")
+        let MaxValueAsString = localStorage.getItem("MaxValue")
+        let currentAsString = localStorage.getItem("current")
+        if (startValueAsString) {
+            setCurrent(JSON.parse(startValueAsString))
         }
+        MaxValueAsString && setMaxValue(JSON.parse(MaxValueAsString))
+        currentAsString && setCurrent(JSON.parse(currentAsString))
     }, [])
 
     useEffect(() => {
-        localStorage.setItem("currentValue", JSON.stringify(current))
-    }, [current])
+        localStorage.setItem("startValue", JSON.stringify(startValue))
+        localStorage.setItem("MaxValue", JSON.stringify(MaxValue))
+        localStorage.setItem("current", JSON.stringify(current))
+    }, [startValue, MaxValue, current])
 
     const changeCurrent = () => {
         if (current < MaxValue) {
@@ -33,31 +41,29 @@ function App() {
         setCurrent(startValue)
     }
 
-
-    //надо исправлять
-    let newMaxCurrentValue: number
-    const setCurrentMaxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        if (+e.currentTarget.value >= 0) {
-            return newMaxCurrentValue = +e.currentTarget.value
+    const updateStartValue = (value: number) => {
+        updateError(startingMessage)
+        if (value >= MaxValue || value < 0) {
+            updateError('Incorrect value')
         }
+        setStartValue(value)
+        setCurrent(value)
     }
 
-    let newMinCurrentValue: number
-    const setCurrentMinValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        if (+e.currentTarget.value >= 0) {
-            return newMinCurrentValue = +e.currentTarget.value
+    const updateMaxValue = (value: number) => {
+        updateError(startingMessage)
+        if (value <= startValue || value < 0) {
+            updateError('Incorrect value')
         }
+        setMaxValue(value)
     }
-
-    const setNewCurrentValueHandler = () => {
-        setMaxValue(newMaxCurrentValue)
-        setStartValue(newMinCurrentValue)
-    }
+    const updateError = (error: string) => setError(error)
 
     return (
         <div>
+
             <div className="App">
-                <div className="conteiner">
+                <div className="container">
                     <Counter
                         current={current}
                     />
@@ -72,15 +78,14 @@ function App() {
             </div>
 
             <div className="App">
-                <div className="conteiner">
+                <div className="container">
                     <SetInput
-                        ButtonCallBack={() => {
-                        }}
+                        updateStartValue={updateStartValue}
+                        updateMaxValue={updateMaxValue}
+                        updateError={updateError}
                         MaxValue={MaxValue}
                         startValue={startValue}
-                        setCurrentMaxValueHandler={setCurrentMaxValueHandler}
-                        setCurrentMinValueHandler={setCurrentMinValueHandler}
-                        setNewCurrentValueHandler={setNewCurrentValueHandler}
+                        error={error}
                     />
                 </div>
             </div>

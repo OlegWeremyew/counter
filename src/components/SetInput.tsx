@@ -2,12 +2,12 @@ import React, {ChangeEvent} from 'react';
 import Button from "./Button";
 
 type PropsType = {
-    ButtonCallBack: () => void
     MaxValue: number
     startValue: number
-    setCurrentMaxValueHandler: (e: ChangeEvent<HTMLInputElement>) => void
-    setCurrentMinValueHandler: (e: ChangeEvent<HTMLInputElement>) => void
-    setNewCurrentValueHandler: () => void
+    updateStartValue: (value: number) => void
+    updateMaxValue: (value: number) => void
+    updateError: (error: string) => void
+    error: string
 }
 
 export const SetInput = (props: PropsType) => {
@@ -21,14 +21,14 @@ export const SetInput = (props: PropsType) => {
                 <div>
                     <span>MaxValue</span>
                     <input type="number"
-                           onChange={props.setCurrentMaxValueHandler}
+                          /* onChange={props.setCurrentMaxValueHandler}*/
                            /*value={props.MaxValue}*/
                            autoFocus/>
                 </div>
                 <div>
                     <span>startValue</span>
                     <input type="number"
-                           onChange={props.setCurrentMinValueHandler}
+                         /*  onChange={props.setCurrentMinValueHandler}*/
                            /*value={props.startValue}*/
                            autoFocus/>
                 </div>
