@@ -25,18 +25,18 @@ export const SetInput = (props: PropsType) => {
 
     return (
         <div>
-            <div>Начальное значение: <br/>
+            <div  className="inputLabelText">Начальное значение: <br/>
                 <Input value={props.startValue}
                        onChangeInputHandler={props.updateStartValue}
                        error={error}/>
             </div>
-            <div>Максимальное значение: <br/>
+            <div className="inputLabelText">Максимальное значение: <br/>
                 <Input value={props.MaxValue}
                        onChangeInputHandler={props.updateMaxValue}
                        error={error}/>
             </div>
             <Button ButtonCallBack={setNewCurrentValueHandler}
-                    className={""}
+                    className=""
                     name={"Обновить"}
                     disabled={disabled}/>
         </div>

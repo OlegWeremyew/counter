@@ -12,7 +12,7 @@ type ButtonType = {
 const Buttons = ({ButtonReset, changeCurrent, MaxValue, startValue, current, ...props}: ButtonType) => {
 
     const ButtonCurrentClassName = (current === MaxValue) ? "buttonCurrentMax" : "buttonCurrent"
-    const ButtonResetClassName = (current >= startValue + 1) ? "buttonResetActive" : "buttonReset"
+    const ButtonResetClassName = (current !== startValue) ? "buttonResetActive" : "buttonReset"
 
     return (
         <div className="current">

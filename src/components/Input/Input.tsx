@@ -1,10 +1,10 @@
 import React, {ChangeEvent, DetailedHTMLProps, InputHTMLAttributes} from 'react';
 
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
+
 type InputPropsType = DefaultInputPropsType &{
     value: number
     onChangeInputHandler: (value: number) => void
-    spanClassName?: string
     error?: boolean
 }
 
@@ -14,11 +14,12 @@ const Input = (props: InputPropsType) => {
     }
 
     return (
-        <input
-            type="number"
-            value={props.value}
-            onChange={onChangeHandler}
-        />
+            <input
+                className="table inputStyle"
+                type="number"
+                value={props.value}
+                onChange={onChangeHandler}
+            />
     );
 };
 

@@ -2,7 +2,7 @@ import React from 'react';
 
 type ButtonType = {
     ButtonCallBack: () => void
-    className: string
+    className?: string
     name: string
     disabled?: boolean
 }

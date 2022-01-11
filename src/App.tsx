@@ -7,7 +7,7 @@ import {SetInput} from "./components/SetInput";
 
 function App() {
 
-    const startingMessage = 'enter values and press "update"';
+    const startingMessage = 'введите значение и нажмите "обновить"';
 
     const [startValue, setStartValue] = useState<number>(0)
     const [MaxValue, setMaxValue] = useState<number>(5)
@@ -66,6 +66,7 @@ function App() {
                 <div className="container">
                     <Counter
                         current={current}
+                        MaxValue={MaxValue}
                     />
                     <Buttons
                         current={current}

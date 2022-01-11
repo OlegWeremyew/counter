@@ -25,6 +25,7 @@
     height: 30px;
     font-family: "Calisto MT";
     font-style: italic;
+    width: 90%;
 }
 
 .tableBlock {
@@ -63,7 +64,7 @@ button {
     border: solid #e30101 3px;
 }
 
-.buttonResetActive{
+.buttonResetActive {
     background-color: #80a8cb;
     color: #043604;
     box-shadow: 3px 3px 3px #181616;
@@ -75,4 +76,15 @@ button {
     background-color: #a8dcae;
     opacity: 0.2;
     border: solid #e30101 3px;
+}
+
+.inputStyle {
+    text-align: center;
+}
+
+.inputLabelText {
+    font-weight: bolder;
+    font-size: 20px;
+    font-family: "Calisto MT";
+    font-style: italic;
 }
