@@ -2,7 +2,7 @@ import React, {ChangeEvent, useEffect, useState} from 'react';
 import './App.css';
 
 import Counter from "./components/Counter";
-import Buttons from "./components/Buttons";
+import Buttons from "./components/Buttons/Buttons";
 import {SetInput} from "./components/SetInput";
 
 function App() {
@@ -86,6 +86,7 @@ function App() {
                         MaxValue={MaxValue}
                         startValue={startValue}
                         error={error}
+                        startingMessage={startingMessage}
                     />
                 </div>
             </div>

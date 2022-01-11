@@ -1,5 +1,6 @@
 import React, {ChangeEvent} from 'react';
-import Button from "./Button";
+import Button from "./Buttons/Button";
+import Input from "./Input/Input";
 
 type PropsType = {
     MaxValue: number
@@ -8,34 +9,36 @@ type PropsType = {
     updateMaxValue: (value: number) => void
     updateError: (error: string) => void
     error: string
+    startingMessage: string
 }
 
 export const SetInput = (props: PropsType) => {
 
-    /*    const ButtonCurrentClassName = props.current === props.MaxValue) ? "buttonCurrentMax" : "buttonCurrent"
-        const ButtonResetClassName = (props.current >= props.startValue + 1) ? "buttonResetActive" : "buttonReset"*/
+    const setNewCurrentValueHandler = () => {
+        props.updateStartValue(props.startValue)
+        props.updateMaxValue(props.MaxValue)
+        props.updateError("")
+    }
+
+    const error = props.startValue >= props.MaxValue
+    const disabled = !props.error || props.error !== props.startingMessage
 
     return (
         <div>
-            <div>
-                <div>
-                    <span>MaxValue</span>
-                    <input type="number"
-                          /* onChange={props.setCurrentMaxValueHandler}*/
-                           /*value={props.MaxValue}*/
-                           autoFocus/>
-                </div>
-                <div>
-                    <span>startValue</span>
-                    <input type="number"
-                         /*  onChange={props.setCurrentMinValueHandler}*/
-                           /*value={props.startValue}*/
-                           autoFocus/>
-                </div>
+            <div>Начальное значение: <br/>
+                <Input value={props.startValue}
+                       onChangeInputHandler={props.updateStartValue}
+                       error={error}/>
             </div>
-            <Button ButtonCallBack={props.setNewCurrentValueHandler}
+            <div>Максимальное значение: <br/>
+                <Input value={props.MaxValue}
+                       onChangeInputHandler={props.updateMaxValue}
+                       error={error}/>
+            </div>
+            <Button ButtonCallBack={setNewCurrentValueHandler}
                     className={""}
-                    name={"Обновить"}/>
+                    name={"Обновить"}
+                    disabled={disabled}/>
         </div>
     );
 };
