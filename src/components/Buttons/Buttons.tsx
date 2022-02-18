@@ -9,7 +9,7 @@ type ButtonType = {
     startValue: number
 }
 
-const Buttons = ({ButtonReset, changeCurrent, MaxValue, startValue, current, ...props}: ButtonType) => {
+const Buttons = ({ButtonReset, changeCurrent, MaxValue, startValue, current}: ButtonType) => {
 
     const ButtonCurrentClassName = (current === MaxValue) ? "buttonCurrentMax" : "buttonCurrent"
     const ButtonResetClassName = (current !== startValue) ? "buttonResetActive" : "buttonReset"

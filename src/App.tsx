@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 
 import Counter from "./components/Counter";
@@ -18,9 +18,7 @@ function App() {
         let startValueAsString = localStorage.getItem("startValue")
         let MaxValueAsString = localStorage.getItem("MaxValue")
         let currentAsString = localStorage.getItem("current")
-        if (startValueAsString) {
-            setCurrent(JSON.parse(startValueAsString))
-        }
+        startValueAsString && setCurrent(JSON.parse(startValueAsString))
         MaxValueAsString && setMaxValue(JSON.parse(MaxValueAsString))
         currentAsString && setCurrent(JSON.parse(currentAsString))
     }, [])
@@ -43,9 +41,7 @@ function App() {
 
     const updateStartValue = (value: number) => {
         updateError(startingMessage)
-        if (value >= MaxValue || value < 0) {
-            updateError('Incorrect value')
-        }
+        if (value >= MaxValue || value < 0) updateError('Incorrect value')
         setStartValue(value)
         setCurrent(value)
     }
@@ -57,11 +53,11 @@ function App() {
         }
         setMaxValue(value)
     }
+
     const updateError = (error: string) => setError(error)
 
     return (
         <div>
-
             <div className="App">
                 <div className="container">
                     <Counter
@@ -91,7 +87,6 @@ function App() {
                     />
                 </div>
             </div>
-
         </div>
     );
 }

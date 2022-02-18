@@ -7,7 +7,7 @@ type ButtonType = {
     disabled?: boolean
 }
 
-const Button = ({ButtonCallBack, name, className, disabled, ...props}: ButtonType) => {
+const Button = ({ButtonCallBack, name, className, disabled}: ButtonType) => {
 
     return (
         <div>

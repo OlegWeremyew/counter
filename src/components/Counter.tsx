@@ -5,7 +5,7 @@ type CurrentType = {
     MaxValue: number
 }
 
-const Counter = ({current, MaxValue,...props}: CurrentType) => {
+const Counter = ({current, MaxValue}: CurrentType) => {
 
     const CurrentClassName = (current === MaxValue) ? `table tableBlock` : "table"
     const Message = (current === MaxValue) ? `${current} - это мой предел` : current
