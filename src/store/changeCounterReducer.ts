@@ -1,5 +1,8 @@
+import {Dispatch} from "redux";
+import {AppRootStateType} from "./store";
+
 export const initialState = {
-    startValue: 0,
+    value: 0,
     MaxValue: 5,
 }
 
@@ -8,11 +11,13 @@ export type initialStateType = typeof initialState
 export const changeCounterReducer = (state: initialStateType = initialState, action: ActionType): initialStateType => {
     switch (action.type) {
         case "CHANGE-CURRENT-VALUE" : {
-            let currentValue = state.startValue + 1
-            return (state.MaxValue < state.startValue && state.startValue > 0) ? {...state, startValue: currentValue} : state
+            return {...state, value: state.value + 1}
         }
         case "RESET-VALUE" : {
-            return {...state, startValue: 0}
+            return {...state, value: 0}
+        }
+        case "SET_VALUE_FROM_LOCAL_STORAGE" : {
+            return {...state, value: action.value}
         }
         default:
             return state
@@ -22,18 +27,38 @@ export const changeCounterReducer = (state: initialStateType = initialState, act
 type ActionType =
     | ChangeCurrentValueType
     | ResetCurrentValueType
+    | setValueFromLocalStorageType
 
 
 export type ChangeCurrentValueType = ReturnType<typeof changeCurrentValueAC>
 export const changeCurrentValueAC = () => {
     return {
-        type: "CHANGE-CURRENT-VALUE",
-    }
+        type: "CHANGE-CURRENT-VALUE"
+    } as const
 }
 
 export type ResetCurrentValueType = ReturnType<typeof resetCurrentValueAC>
 export const resetCurrentValueAC = () => {
     return {
         type: "RESET-VALUE",
-    }
+    } as const
+}
+
+export type setValueFromLocalStorageType = ReturnType<typeof setValueFromLocalStorageAC>
+export const setValueFromLocalStorageAC = (value: number) => {
+    return {
+        type: "SET_VALUE_FROM_LOCAL_STORAGE",
+        value
+    } as const
+}
+
+
+//Thunk
+
+export const IncValueTC = () => (dispatch: Dispatch<ActionType>, getState: () => AppRootStateType) => {
+
+    const currentValue = getState().changeCount.value
+
+    localStorage.setItem("startValue", JSON.stringify(currentValue + 1))
+    dispatch(changeCurrentValueAC())
 }
