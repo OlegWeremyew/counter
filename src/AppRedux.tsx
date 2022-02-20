@@ -6,8 +6,8 @@ import {AppRootStateType} from "./store/store";
 import {
     changeCurrentValueAC,
     IncValueTC,
-    resetCurrentValueAC,
-    setValueFromLocalStorageAC
+    resetCurrentValueAC, ResetValueTC,
+    setValueFromLocalStorageTC
 } from "./store/changeCounterReducer";
 
 function AppRedux() {
@@ -17,7 +17,7 @@ function AppRedux() {
     const dispatch = useDispatch()
 
     useEffect(()=>{
-
+        dispatch(setValueFromLocalStorageTC())
     }, [])
 
     const changeCurrent = () => {
@@ -28,11 +28,7 @@ function AppRedux() {
     }
 
     const ButtonReset = () => {
-        dispatch(resetCurrentValueAC())
-    }
-
-    const SetValueFromLocalStorage = (e: number) => {
-        dispatch(setValueFromLocalStorageAC(10))
+        dispatch(ResetValueTC())
     }
 
     return (
@@ -40,10 +36,6 @@ function AppRedux() {
             {value}
             <button onClick={changeCurrent}>+</button>
             <button onClick={ButtonReset}>reset</button>
-            <button onClick={() => {
-            }}>set value
-            </button>
-            <input type="number" onChange={e => SetValueFromLocalStorage(+e.currentTarget.value)}/>
         </div>
     );
 }

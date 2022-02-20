@@ -52,13 +52,23 @@ export const setValueFromLocalStorageAC = (value: number) => {
     } as const
 }
 
-
 //Thunk
 
 export const IncValueTC = () => (dispatch: Dispatch<ActionType>, getState: () => AppRootStateType) => {
-
     const currentValue = getState().changeCount.value
-
     localStorage.setItem("startValue", JSON.stringify(currentValue + 1))
     dispatch(changeCurrentValueAC())
+}
+
+export const ResetValueTC = () => (dispatch: Dispatch<ActionType>) => {
+    localStorage.setItem("startValue", JSON.stringify(0))
+    dispatch(resetCurrentValueAC())
+}
+
+export const setValueFromLocalStorageTC = () => (dispatch: Dispatch<ActionType>) => {
+    let valueAsString = localStorage.getItem("startValue")
+    if (valueAsString) {
+        let newValue = JSON.parse(valueAsString)
+        dispatch(setValueFromLocalStorageAC(newValue))
+    }
 }
