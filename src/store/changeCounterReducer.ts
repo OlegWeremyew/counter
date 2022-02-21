@@ -1,9 +1,6 @@
-import {Dispatch} from "redux";
-import {AppRootStateType} from "./store";
 
 export const initialState = {
     value: 0,
-    MaxValue: 5,
 }
 
 export type initialStateType = typeof initialState
@@ -54,7 +51,7 @@ export const setValueFromLocalStorageAC = (value: number) => {
 
 //Thunk
 
-export const IncValueTC = () => (dispatch: Dispatch<ActionType>, getState: () => AppRootStateType) => {
+/*export const IncValueTC = () => (dispatch: Dispatch<ActionType>, getState: () => AppRootStateType) => {
     const currentValue = getState().changeCount.value
     localStorage.setItem("startValue", JSON.stringify(currentValue + 1))
     dispatch(changeCurrentValueAC())
@@ -71,4 +68,4 @@ export const setValueFromLocalStorageTC = () => (dispatch: Dispatch<ActionType>)
         let newValue = JSON.parse(valueAsString)
         dispatch(setValueFromLocalStorageAC(newValue))
     }
-}
+}*/
